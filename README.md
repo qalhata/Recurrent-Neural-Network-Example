@@ -1,2 +1,2 @@
 # Recurrent-Neural-Network-Example
-Basic text generation and sentiment analysis - numpy-keras
+Basic text generation and imdb sentiment analysis - numpy-keras -beginner to advanced
