@@ -4,7 +4,7 @@ from keras.layers import LSTM, Dense, Activation
 from keras.callbacks import Callback
 from random import randint
 
-with open('sampleInterview.txt', 'r') as file:
+with open('sampletextfile.txt', 'r') as file:
     # any file can be read into script
     #  encoding='utf-8' - ignore this line... #signpost
     corpus = file.read()
@@ -15,16 +15,16 @@ data_size, vocab_size = len(corpus), len(chars)
 char_to_idx = {c: i for i, c in enumerate(chars)}
 idx_to_char = {i: c for i, c in enumerate(chars)}
 
-sentence_length = 50    # we chunk sentences by char from corpus in sets of 50
+sentence_length = 50    # chunk sentences by char from corpus in sets of 50
 sentences = []
 next_chars = []
-for i in range(data_size - sentence_length):    # ancestral sampling
+for i in range(data_size - sentence_length):    # see ancestral sampling on web
     sentences.append(corpus[i: i + sentence_length])
     # we start at an index and then call the next 50 as specified above
     next_chars.append(corpus[i + sentence_length])
     # this maps from sentences in 50 chars to the next single char in sequence
 
-# more preprocessing - we createinputs for our lstm
+# more preprocessing - we create inputs for our lstm
 num_sentences = len(sentences)
 
 #%%
@@ -33,7 +33,7 @@ num_sentences = len(sentences)
 # sequence length and data size (embedding dims-this case our one hot vector)
 X = np.zeros((num_sentences, sentence_length, vocab_size), dtype=np.bool)
 
-# we ap chink of 50sentences to a single char
+# we appropriate chunks of 50 sentences to a single char
 y = np.zeros((num_sentences, vocab_size), dtype=np.bool)
 
 # where do we place the one hot encoding?..
